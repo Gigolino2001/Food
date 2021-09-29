@@ -1,12 +1,22 @@
+from Section import Section
+
+SECTION_SIZE = 26
 class Supermarket:
+    
     def __init__(self):
-        self.__sections = []
-        self.__money_per_day = 1
-        self.__costs_per_day = 2
+        
+        self.__sections = self.create_sections()
+        self.__money_per_day = 0
+        self.__costs_per_day = 0
+
+    def create_sections(self):
+        sections = []
+        for x in list(range(SECTION_SIZE)):
+            sections.append(Section(x))
+        return sections
 
     def get_money_per_day(self):
         return self.__money_per_day
-    
     
     def get_costs_per_day(self):
         return self.__costs_per_day
