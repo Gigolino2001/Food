@@ -1,4 +1,6 @@
 from Supermarket import Supermarket
+from Section import Section
+
 class Menu:
     
     def __init__(self):
@@ -6,8 +8,9 @@ class Menu:
         1: 'Create a Supermarket',
         2: 'Show money earned per day',
         3: 'Show costs per day',
-        4: 'Option 4',
-        5: 'Exit',
+        4: 'Show all sections',
+        5: 'Name Section',
+        6: 'Exit',
     }
 
     def print_menu(self):
@@ -38,8 +41,22 @@ class Menu:
                     print("-> You have to create a Supermarket before.\n")
             
             elif option == 4:
-                print(4)
+                try:
+                    for section in supermarket.get_sections():
+                        print("-> " + str(section.get_number()) + " - " + str(section.get_categorie()))
+                    print()
+                except:
+                    print("-> You have to create a Supermarket before.\n")
+            
             elif option == 5:
+                try:
+                   sections = supermarket.get_sections() #### Stoped Here ######
+                   sections[25].set_categorie("Oi")
+                except:
+                    print("-> You have to create a Supermarket before.\n")
+
+
+            elif option == 6:
                 print('Thank you for using the app!"')
                 exit()
             else:
