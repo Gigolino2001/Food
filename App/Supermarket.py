@@ -15,6 +15,10 @@ class Supermarket:
             sections.append(Section(x))
         return sections
 
+    def add_section(self,name):
+        self.__sections.append(Section(len(self.__sections)))
+        self.__sections[-1].set_categorie(name)
+
     def set_name(self,name):
         self.__name = name
 
@@ -29,3 +33,5 @@ class Supermarket:
     
     def get_sections(self):
         return self.__sections
+
+    
