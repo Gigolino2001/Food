@@ -12,4 +12,4 @@
    - Searching for food with hash table 🔜
    - Show Sections by alphabetical order 🔜
   
-**Future functionalities will be added. Feel free to post your ideas !**
+**Future functionalities will be added. Feel free to post your ideas !** 😃
