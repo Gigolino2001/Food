@@ -10,7 +10,8 @@ class Menu:
         3: 'Show costs per day',
         4: 'Show all sections',
         5: 'Name Section',
-        6: 'Exit',
+        6: 'Add Section',
+        7: 'Exit'
     }
 
     def print_menu(self):
@@ -60,7 +61,16 @@ class Menu:
                    print('-> Please enter valid arguments.')
 
             elif option == 6:
+                try:
+                    name_section = str(input('Enter the name of the section: '))
+                    supermarket.add_section(name_section)
+                    print('-> Section added.')
+                except:
+                    print('-> Please enter a valid name.')
+
+            
+            elif option == 7:
                 print('Thank you for using the app!"')
                 exit()
             else:
-                print('-> Wrong input. Please enter a number between 1 and 6')
+                print('-> Wrong input. Please enter a number between 1 and 7')
