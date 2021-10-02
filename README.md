@@ -10,6 +10,6 @@
    - Add Food class 🔜
    - Add food list for clients 🔜 
    - Searching for food with hash table 🔜
-   - Show Sections by alphabetical order 🔜
+   - Show Sections by alphabetical order ✔
   
 **Future functionalities will be added. Feel free to post your ideas !** 😃
