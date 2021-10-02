@@ -1,7 +1,7 @@
 class Section:
-    def __init__(self,number):
+    def __init__(self,number, categorie):
         self.__number = number
-        self.__categorie = None
+        self.__categorie = categorie
         self.__food = []
 
     def get_number(self):
