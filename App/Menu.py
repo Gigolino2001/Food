@@ -1,5 +1,5 @@
+from Product import Product
 from Supermarket import Supermarket
-from Section import Section
 
 class Menu:
     
@@ -12,7 +12,8 @@ class Menu:
         5: 'Show all sections by alphabetical order',
         6: 'Name Section',
         7: 'Add Section',
-        8: 'Exit'
+        8: 'Add Product',
+        9: 'Exit'
     }
 
     def print_menu(self):
@@ -60,7 +61,6 @@ class Menu:
                 else:
                     print("-> Please enter the supermarket name first.")
 
-
             elif option == 6:
                 sections = supermarket.get_sections()
                 try:
@@ -79,9 +79,25 @@ class Menu:
                     print('-> Section added.')
                 except:
                     print('-> Please enter a valid name.')
-
-            
             elif option == 8:
+                try:
+                    name_product = str(input('Enter the name of the product: '))
+                    id_product = int(input('Enter the product ID: '))
+                    cost = int(input('Enter the price: '))
+                    name_section = str(input('Enter the section name that stores this product: '))
+                    flag_existing_section = 0
+                    for section in supermarket.get_sections_by_name():
+                        if section.get_categorie().lower() == name_section.lower():
+                            flag_existing_section = 1
+                            Product(name_product,id_product,cost,section.get_number())
+                            section.add_product(Product)
+                            print('-> Product added.')
+                    if flag_existing_section == 0:
+                        print("-> Your section doesn't exist.")
+                except:
+                    print('-> Please enter a valid name.')
+
+            elif option == 9:
                 print('Thank you for using the app!"')
                 exit()
             else:
