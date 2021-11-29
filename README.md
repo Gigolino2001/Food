@@ -7,7 +7,7 @@
    - Name Section ✔
    - Add a new Section ✔
    - Add Client class 🔜
-   - Add Food class 🔜
+   - Add Food class ✔
    - Add food list for clients 🔜 
    - Searching for food with hash table 🔜
    - Show Sections by alphabetical order ✔
