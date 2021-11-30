@@ -13,7 +13,9 @@ class Menu:
         6: 'Name Section',
         7: 'Add Section',
         8: 'Add Product',
-        9: 'Exit'
+        9: 'Show Product',
+        10: 'Show All Products',
+        11: 'Exit'
     }
 
     def print_menu(self):
@@ -28,7 +30,7 @@ class Menu:
             try:
                 option = int(input('Enter your choice: '))
             except:
-                print('-> Wrong input. Please enter a number between 1 and 5')
+                print('-> Wrong input. Please enter a number between 1 and 9')
             if option == 1:
                 try:
                     name_Supermarket = str(input('Enter the name of the Supermarket: '))
@@ -55,7 +57,9 @@ class Menu:
                 name = supermarket.get_name()
                 if not (isinstance(name, type(None))):
                     print("\n↓ SUPERMARKET " + str(name).upper() + " SECTIONS BY NAME↓")
-                    for section in supermarket.get_sections_by_name():
+                    sections = supermarket.get_sections()
+                    cpy_sections = sorted(sections, key=lambda x: (x.get_categorie()).casefold())
+                    for section in cpy_sections:
                         print("-> " + str(section.get_number()) + " - " + str(section.get_categorie()))
                     print()
                 else:
@@ -78,7 +82,7 @@ class Menu:
                     supermarket.add_section(name_section)
                     print('-> Section added.')
                 except:
-                    print('-> Please enter a valid name.')
+                    print('-> Please enter a valid argument.')
             elif option == 8:
                 try:
                     name_product = str(input('Enter the name of the product: '))
@@ -86,19 +90,54 @@ class Menu:
                     cost = int(input('Enter the price: '))
                     name_section = str(input('Enter the section name that stores this product: '))
                     flag_existing_section = 0
-                    for section in supermarket.get_sections_by_name():
+                    sections = supermarket.get_sections()
+                    for section in sections:
                         if section.get_categorie().lower() == name_section.lower():
                             flag_existing_section = 1
-                            Product(name_product,id_product,cost,section.get_number())
-                            section.add_product(Product)
+                            product = Product(name_product,id_product,cost,section.get_number())
+                            section.add_product(product)
                             print('-> Product added.')
                     if flag_existing_section == 0:
                         print("-> Your section doesn't exist.")
                 except:
-                    print('-> Please enter a valid name.')
-
+                    print('-> Please enter a valid arguments.')
+            
             elif option == 9:
+                name = supermarket.get_name()
+                try:       
+                    prod_name = str(input("Enter the product name: "))
+                    print("\n↓ SUPERMARKET " + str(name).upper() + " SECTIONS BY NUMBER ↓")
+                    for section in supermarket.get_sections():
+                        print("-> " + str(section.get_number()) + " - " + str(section.get_categorie()))
+                    print()
+                    prod_categorie = int(input("Select the number of the product categorie: "))
+                    sections = supermarket.get_sections()
+                except:
+                    print('-> Please enter a valid arguments.')
+                    continue
+                
+                flag_existing_section = 0
+                for products in sections[prod_categorie].get_products():
+                    if prod_name.lower() == products.get_name().lower():
+                        flag_existing_section = 1
+                        print("ID: " + str(products.get_id()))
+                        print("Name: " + str(products.get_name()))
+                        print("Section: "+ str(prod_categorie) + " - " + str(sections[prod_categorie].get_categorie()))
+                        print("Cost: " + str(products.get_cost()))
+                if flag_existing_section == 0:
+                    print("-> Sorry, but the product doesn't exist in this categorie.")
+            
+                print('-> Please enter a valid categorie number.')
+            elif option == 10:
+                name = supermarket.get_name()       
+                print("\n↓ SUPERMARKET " + str(name).upper() + " PRODUCTS ↓")
+                for section in supermarket.get_sections():
+                    for product in section.get_products():
+                        print("-> " + str(product.get_id()) + " - " + str(product.get_name()))
+                print()
+   
+            elif option == 11:
                 print('Thank you for using the app!"')
                 exit()
             else:
-                print('-> Wrong input. Please enter a number between 1 and 7')
+                print('-> Wrong input. Please enter a number between 1 and 11')
