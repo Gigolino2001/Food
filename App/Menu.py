@@ -115,19 +115,19 @@ class Menu:
                 except:
                     print('-> Please enter a valid arguments.')
                     continue
-                
-                flag_existing_section = 0
-                for products in sections[prod_categorie].get_products():
-                    if prod_name.lower() == products.get_name().lower():
-                        flag_existing_section = 1
-                        print("ID: " + str(products.get_id()))
-                        print("Name: " + str(products.get_name()))
-                        print("Section: "+ str(prod_categorie) + " - " + str(sections[prod_categorie].get_categorie()))
-                        print("Cost: " + str(products.get_cost()))
-                if flag_existing_section == 0:
-                    print("-> Sorry, but the product doesn't exist in this categorie.")
-            
-                print('-> Please enter a valid categorie number.')
+                try:
+                    flag_existing_section = 0
+                    for products in sections[prod_categorie].get_products():
+                        if prod_name.lower() == products.get_name().lower():
+                            flag_existing_section = 1
+                            print("ID: " + str(products.get_id()))
+                            print("Name: " + str(products.get_name()))
+                            print("Section: "+ str(prod_categorie) + " - " + str(sections[prod_categorie].get_categorie()))
+                            print("Cost: " + str(products.get_cost()))
+                    if flag_existing_section == 0:
+                        print("-> Sorry, but the product doesn't exist in this categorie.")
+                except:
+                    print('-> Please enter a valid categorie number.')
             elif option == 10:
                 name = supermarket.get_name()       
                 print("\n↓ SUPERMARKET " + str(name).upper() + " PRODUCTS ↓")
